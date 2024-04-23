@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const WeatherInfo = ({ weather }) => {
     return (
         <div className="text-container-form">

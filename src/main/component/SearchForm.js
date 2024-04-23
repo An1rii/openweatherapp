@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const SearchForm = ({ search, setSearch, searchPressed }) => {
     return (
         <div className="container">
