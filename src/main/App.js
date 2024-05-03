@@ -1,37 +1,43 @@
 
-import React, { useState } from "react";
-import axios from "axios";
 
-import SearchForm from "./component/SearchForm";
-import WeatherInfo from "./component/WeatherInfo";
-import "./style/App.css";
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-const api = {
-    key: "d74b22e57d1cc1c90377f63de597234c",
-    base: "https://api.openweathermap.org/data/2.5/",
-};
+function GraphicWeather({ weatherData }) {
 
-function App() {
-    const [search, setSearch] = useState("");
-    const [weather, setWeather] = useState({});
+    if (!weatherData || !weatherData.main) {
+        return <p>Loading or no weather data available...</p>;
+    }
 
-    const searchPressed = () => {
-        axios
-            .get(`${api.base}weather?q=${search}&units=metric&APPID=${api.key}`)
-            .then((response) => {
-                setWeather(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
-    };
+    const data = [
+        {
+            name: 'Temperature',
+            value: weatherData.main.temp,
+        },
+    ];
 
     return (
-        <div className="App">
-            <SearchForm search={search} setSearch={setSearch} searchPressed={searchPressed} />
-            {typeof weather.main !== "undefined" ? <WeatherInfo weather={weather} /> : null}
+        <div>
+            <BarChart
+                width={500}
+                height={300}
+                data={data}
+                margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                }}
+            >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="value" fill="#8884d8" />
+            </BarChart>
         </div>
     );
 }
 
-export default App;
+export default GraphicWeather;
