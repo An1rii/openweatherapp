@@ -86,13 +86,21 @@ h1 {
 .text-container-form {
   padding-top: 15px;
   position: absolute;
-  top: calc(50% + 100px);
-  right: calc(45% + 50px);
+  top: calc(60% + 100px);
+  right: calc(38% + 50px);
   transform: translate(-50%, -50%);
   font-family: Arial, sans-serif;
   font-size: 20px;
   font-weight: bold;
   color: #333;
   line-height: 1.5rem;
+}
+.graphic-weather{
+  padding-top: 15px;
+  position: absolute;
+  top: calc(60% + 100px);
+  right: calc(10% + 50px);
+
+  transform: translate(-50%, -50%);
 }
 

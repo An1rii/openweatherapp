@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import SearchForm from "./component/SearchForm";
 import WeatherInfo from "./component/WeatherInfo";
-import GraphicWeather from "./component/GraphicWeather"; // Make sure this import is correct
+import GraphicWeather from "./component/GraphicWeather";
 import "./style/App.css";
 
 const api = {

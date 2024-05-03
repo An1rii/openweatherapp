@@ -1,26 +1,21 @@
 
-
-
-// GraphicWeather.js
-
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 function GraphicWeather({ weatherData }) {
-    // Handle undefined weatherData or weatherData.main
-    if (!weatherData || !weatherData.main) {
+       if (!weatherData || !weatherData.main) {
         return <p>Loading or no weather data available...</p>;
     }
 
     const data =[
         {
             name: 'Temperature',
-            value: weatherData.main.temp, // Since we checked above, it's to access temp
+            value: weatherData.main.temp,
         },
     ];
 
     return (
-        <div>
+        <div className='graphic-weather'>
             <BarChart
                 width={500}
                 height={300}
