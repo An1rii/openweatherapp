@@ -1,44 +1,42 @@
+import React, { useState } from "react";
+import axios from "axios";
+import SearchForm from "./component/SearchForm";
+import WeatherInfo from "./component/WeatherInfo";
+import GraphicWeather from "./component/GraphicWeather"; // Make sure this import is correct
+import "./style/App.css";
+
+const api = {
+    key: "d74b22e57d1cc1c90377f63de597234c",
+    base: "https://api.openweathermap.org/data/2.5/",
+};
 
 
-import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+function App() {
+    const [search, setSearch] = useState("");
+    const [weather, setWeather] = useState({});
 
-function GraphicWeather({ weatherData }) {
-
-    if (!weatherData || !weatherData.main) {
-        return <p>Loading or no weather data available...</p>;
-    }
-
-    const data = [
-        {
-            name: 'Temperature',
-            value: weatherData.main.temp,
-        },
-    ];
+    const searchPressed = () => {
+        axios
+            .get(`${api.base}weather?q=${search}&units=metric&APPID=${api.key}`)
+            .then((response) => {
+                setWeather(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    };
 
     return (
-        <div>
-            <BarChart
-                width={500}
-                height={300}
-                data={data}
-                margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="value" fill="#8884d8" />
-            </BarChart>
+        <div className="App">
+            <SearchForm search={search} setSearch={setSearch} searchPressed={searchPressed} />
+            {typeof weather.main !== "undefined" ? (
+                <>
+                    <WeatherInfo weather={weather} />
+                    <GraphicWeather weatherData={weather} />
+                </>
+            ) : null}
         </div>
     );
 }
 
-export default GraphicWeather;
-
+export default App;
