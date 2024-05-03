@@ -41,3 +41,4 @@ function GraphicWeather({ weatherData }) {
 }
 
 export default GraphicWeather;
+
