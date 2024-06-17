@@ -1,9 +1,9 @@
 import React from "react";
 
-
 const SearchForm = ({ search, setSearch, searchPressed }) => {
     return (
-        <div className="container">
+        <form className="weather_search_form" onSubmit={(e) =>
+        { e.preventDefault(); searchPressed(); }}>
             <h1>Weather App</h1>
             <div className="custom_input">
                 <svg xmlns="http://www.w3.org/2000/svg" className="svg_icon bi-search" viewBox="0 0 16 16">
@@ -17,9 +17,9 @@ const SearchForm = ({ search, setSearch, searchPressed }) => {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
-                <button className="button" onClick={searchPressed}>Search</button>
+                <button className="button" type="submit">Search</button>
             </div>
-        </div>
+        </form>
     );
 };
 

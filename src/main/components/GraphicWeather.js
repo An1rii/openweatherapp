@@ -1,13 +1,12 @@
-
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 function GraphicWeather({ weatherData }) {
-       if (!weatherData || !weatherData.main) {
+    if (!weatherData || !weatherData.main) {
         return <p>Loading or no weather data available...</p>;
     }
 
-    const data =[
+    const data = [
         {
             name: 'Temperature',
             value: weatherData.main.temp,
